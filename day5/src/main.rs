@@ -46,11 +46,14 @@ fn main() {
         {
             let (first,second) = (rule_nums[0], rule_nums[1]);
 
-            println!("update {:?} \n\t\t\tfor rule -> {},{}", 
-                update, first, second);
             // if the number in the rule is not in the update list
             // then go to the next update numlist
-            // if update
+            if !update.contains(&first) || !update.contains(&second) {
+                continue;
+            }
+
+            println!("update {:?} \n\t\t\tfor rule -> {},{}", 
+                update, first, second);
 
         }
         println!("=======================================================");
