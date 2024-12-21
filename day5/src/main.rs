@@ -35,6 +35,26 @@ fn main() {
     let (ordering_rules_nums,update_nums) = parse_rules_and_updates(&file);
 
 
+    // which one of the updates lists
+    // is already in the right order?
+    
+    let mut updates_in_correct_order = Vec::<Vec<usize>>::new();
 
+    for update in &update_nums 
+    {
+        for rule_nums in &ordering_rules_nums
+        {
+            let (first,second) = (rule_nums[0], rule_nums[1]);
+
+            println!("update {:?} \n\t\t\tfor rule -> {},{}", 
+                update, first, second);
+            // if the number in the rule is not in the update list
+            // then go to the next update numlist
+            // if update
+
+        }
+        println!("=======================================================");
+        break;
+    }
 
 }
