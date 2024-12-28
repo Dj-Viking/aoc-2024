@@ -39,10 +39,13 @@ fn add(a: usize, b: isize) -> Option<usize> {
     }
 }
 
-fn offset(grid: &Vec<&[u8]>, n: (usize, usize), dir: (isize, isize)) -> Option<(usize, usize)> { Some((
-    add(n.0, dir.0).filter(|n| *n < grid.len())?,
-    add(n.1, dir.1).filter(|n| *n < grid[0].len())?
-))}
+fn offset(grid: &Vec<&[u8]>, n: (usize, usize), dir: (isize, isize)) 
+-> Option<(usize, usize)> { 
+    Some((
+        add(n.0, dir.0).filter(|n| *n < grid.len())?,
+        add(n.1, dir.1).filter(|n| *n < grid[0].len())?
+    ))
+}
 
 fn offset_check(grid: &Vec<&[u8]>, coord: (usize, usize), dir: (isize, isize), c: u8) -> bool {
     let Some((y,x)) = offset(grid, coord, dir) else { return false; };
@@ -64,14 +67,11 @@ fn main() {
                     add(n.1, dir.1).filter(|n| *n < grid[0].len())?
                 ))};
 
-                let Some((y, x)) = offset(coord) else { return acc; };
-                if grid[y][x] != b'M' { return acc; }
-                let Some((y, x)) = offset((y, x)) else { return acc; };
-                if grid[y][x] != b'A' { return acc; }
-                let Some((y, x)) = offset((y, x)) else { return acc; };
-                if grid[y][x] != b'S' { return acc; }
+                if offset(coord)
+                    .and_then(|(y, x)| (grid[y][x] == b'M').then(|| offset((y, x))).flatten())
+    .and_then(|(y, x)| (grid[y][x] == b'A').then(|| offset((y, x))).flatten())                    .is_some_and(|(y, x)| (grid[y][x] == b'S'))
+                    { acc + 1 } else { acc }
                 
-                acc + 1
             })));
     // println!("{:?}", coords);
     println!("part2: {}", 
