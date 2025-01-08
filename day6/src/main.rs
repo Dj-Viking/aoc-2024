@@ -32,9 +32,12 @@ const DIRECTIONS: [(isize, isize); 8] = [
     UPRIGHT
 ];
 
+// TODO: get guard starting position dynamically!
+static mut guard_position: (usize, usize) = (0,0);
+
 // return return Some(()) if guard reaches obstacle in the grid
-fn guard_move(grid: &Vec<Vec<char>>) -> Option<()> {
-	return Some(());
+fn guard_move(grid: &mut Vec<Vec<char>>) -> Option<()> {
+	return None;
 }
 
 fn dump_grid(grid: &Vec<Vec<char>>) {
@@ -48,19 +51,20 @@ fn dump_grid(grid: &Vec<Vec<char>>) {
 
 fn main() {
 	let file = std::fs::read_to_string("sample").unwrap();
-	let grid = file.lines() 
-		.map(|l| 
-			l.chars().collect::<Vec<char>>())
+	let mut grid = file.lines() 
+		.map(|l| {
+			l.chars().collect::<Vec<char>>()
+		})
 		.collect::<Vec<Vec<char>>>();
 
 	dump_grid(&grid);
 	let mut buf = String::new();
 
-
 	'walking: loop {
-		while let Some(()) = guard_move(&grid) {
+		while let None = guard_move(&mut grid) {
 			let _ = std::io::stdin().read_line(&mut buf);
 			println!("moving");
+			dump_grid(&grid);
 		}
 	}
 }
