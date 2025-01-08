@@ -32,15 +32,15 @@ const DIRECTIONS: [(isize, isize); 8] = [
     UPRIGHT
 ];
 
-// return true if guard reaches obstacle in the grid
-fn guard_move(grid: &Vec<Vec<char>>) -> bool {
-
+// return return Some(()) if guard reaches obstacle in the grid
+fn guard_move(grid: &Vec<Vec<char>>) -> Option<()> {
+	return Some(());
 }
 
 fn dump_grid(grid: &Vec<Vec<char>>) {
 	grid.into_iter().for_each(|r| {
 		r.into_iter().for_each(|c| {
-			print!("{}", c);
+			print!("{} ", c);
 		});
 		println!("");
 	});
@@ -54,6 +54,13 @@ fn main() {
 		.collect::<Vec<Vec<char>>>();
 
 	dump_grid(&grid);
+	let mut buf = String::new();
 
 
+	'walking: loop {
+		while let Some(()) = guard_move(&grid) {
+			let _ = std::io::stdin().read_line(&mut buf);
+			println!("moving");
+		}
+	}
 }
