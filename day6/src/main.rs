@@ -86,7 +86,6 @@ fn main() {
 			{
 				println!("found guard starting point (y-{},x-{}),{}", y,x, c);
 				guard = Point::new(y as isize,x as isize,c);
-
 			}
 
 			l.chars().enumerate().map(|(x, c)| {
