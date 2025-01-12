@@ -1,3 +1,4 @@
+//                                  y, x
 const UP: (isize, isize) =        ( 1, 0 );
 const DOWN: (isize, isize) =      (-1, 0 );
 const LEFT: (isize, isize) =      ( 0, -1);
@@ -69,8 +70,9 @@ fn main() {
 
                 if offset(coord)
                     .and_then(|(y, x)| (grid[y][x] == b'M').then(|| offset((y, x))).flatten())
-    .and_then(|(y, x)| (grid[y][x] == b'A').then(|| offset((y, x))).flatten())                    .is_some_and(|(y, x)| (grid[y][x] == b'S'))
-                    { acc + 1 } else { acc }
+					.and_then(|(y, x)| (grid[y][x] == b'A').then(|| offset((y, x))).flatten())                    
+				.is_some_and(|(y, x)| (grid[y][x] == b'S'))
+				{ acc + 1 } else { acc }
                 
             })));
     // println!("{:?}", coords);
