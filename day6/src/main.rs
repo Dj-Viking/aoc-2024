@@ -111,10 +111,9 @@ fn main() {
 	}
 }
 
-// return return Some(()) if guard reaches obstacle in the grid
-// guard always moves "forward" relative to which direction they are facing
 fn guard_move(y: usize, x: usize, grid: &mut Vec<Vec<Point>>, guard: &mut Point) -> Option<()> {
 
+	// reached the end just stop looping
 	if y + 1 == grid.len() || x + 1 == grid.len() {
 		return Some(());
 	}
