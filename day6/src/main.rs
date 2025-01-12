@@ -1,42 +1,4 @@
 use std::collections::HashSet;
-// in this problem the directions are 
-// technically opposite
-// up as in polar direction of north and so on
-// so moving is actually opposite direction of the grid coordinates in the grid
-//                                  y, x
-const UP: (isize, isize) =        ( 1, 0 );
-const DOWN: (isize, isize) =      (-1, 0 );
-const LEFT: (isize, isize) =      ( 0, -1);
-const RIGHT: (isize, isize) =     ( 0, 1 );
-const UPLEFT: (isize, isize) =    ( 1, -1);
-const DOWNLEFT: (isize, isize) =  (-1, -1);
-const UPRIGHT: (isize, isize) =   ( 1, 1 );
-const DOWNRIGHT: (isize, isize) = (-1, 1 );
-
-const DIRECTIONS_STRAIGHT: [(isize, isize); 4] = [
-    UP,
-    DOWN,
-    RIGHT,
-    LEFT
-];
-
-const DIRECTIONS_DIAG: [(isize, isize); 4] = [
-    UPLEFT,
-    DOWNLEFT,
-    DOWNRIGHT,
-    UPRIGHT
-];
-
-const DIRECTIONS: [(isize, isize); 8] = [
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT,
-    UPLEFT,
-    DOWNLEFT,
-    DOWNRIGHT,
-    UPRIGHT
-];
 
 #[derive(Debug, PartialEq, Eq)]
 enum Facing {
